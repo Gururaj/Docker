@@ -8,7 +8,10 @@ services:
         - ./app:/var/www/apache-flask/app/
         restart: always
     redis:
-        image: "redis:alpine"
+        image: "redis:latest"
+        entrypoint: redis-server --appendonly yes
         ports:
         - "6379:6379"
+        volumes:
+        - ./data:/data
         restart: always
