@@ -15,3 +15,25 @@ services:
         volumes:
         - ./data:/data
         restart: always
+    db:
+        image: mysql
+        #build: -- build to get another dockerfile. Not as of now. 
+        #    context: ./mysql/
+        #    dockerfile: Dockerfile
+        restart: always
+        environment:
+            MYSQL_USER: profile
+            MYSQL_PASSWORD: profile
+            MYSQL_DATABASE: profiledb
+        volumes:
+            - mysql_data:/var/lib/mysql    
+
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+        - 8080:8080    
+
+volumes:
+  mysql_data:
+            
